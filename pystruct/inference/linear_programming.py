@@ -2,6 +2,8 @@ import numpy as np
 import cvxopt
 import cvxopt.solvers
 
+def to_int(long_tuple):
+    return [int(long_num) for long_num in long_tuple]
 
 def lp_general_graph(unaries, edges, edge_weights):
     if unaries.shape[1] != edge_weights.shape[1]:
@@ -13,7 +15,7 @@ def lp_general_graph(unaries, edges, edge_weights):
         raise ValueError("Number of edge weights different from number of"
                          "edges")
 
-    n_nodes, n_states = unaries.shape
+    n_nodes, n_states = to_int(unaries.shape)
     n_edges = len(edges)
 
     # variables: n_nodes * n_states for nodes,
